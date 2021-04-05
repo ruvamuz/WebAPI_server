@@ -1,0 +1,43 @@
+#Создание базы
+Create Database WorkDB
+
+#Создание и работа с таблицей Контракт
+create table dbo.Contract(
+Id INT PRIMARY KEY IDENTITY,
+ShortNameContract varchar(100),
+FullNameContract varchar(500)
+)
+
+select * from dbo.Contract
+
+insert into dbo.Contract values
+('shortNameContract2','fullNamecontractForWorkAndworkworkwork2')
+
+
+#Создание и работа с таблицей Сотрудники
+create table dbo.Employee(
+Id INT PRIMARY KEY IDENTITY,
+Name nvarchar(20),
+Family nvarchar(20),
+Patronymic varchar(20),
+JobPosition int,
+BirthDate date
+)
+
+insert into dbo.Employee values
+('Петров', 'Павел', 'Петрович','1', '1998-07-08')
+
+select * from dbo.Employee
+
+
+
+#Создание таблицы Должностей
+create table dbo.JobPosition(
+Id INT PRIMARY KEY IDENTITY,
+JobPosition nvarchar(20)
+)
+
+insert into dbo.JobPosition values
+('Тестировщик')
+
+select * from dbo.JobPosition
