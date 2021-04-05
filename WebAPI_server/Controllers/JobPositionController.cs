@@ -28,21 +28,21 @@ namespace Back_End_WebAPI.Controllers
         public JsonResult Post(JobPositionTable job)
         {
             JobPositionManager.PostJobPosition(job);
-            return new JsonResult("Post запрос успешен!");
+            return new JsonResult("Post запрос выполнен!");
         }
 
         [HttpPut]
         public JsonResult Put(JobPositionTable job)
         {
             JobPositionManager.PutJobPosition(job);
-            return new JsonResult("Put метод успешен!");
+            return new JsonResult("Put запрос выполнен!");
         }
 
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
             JobPositionManager.DeleteJobPosition(id);
-            return new JsonResult("Delete метод успешен!");
+            return new JsonResult("Delete запрос выполнен!");
         }
     }
 }

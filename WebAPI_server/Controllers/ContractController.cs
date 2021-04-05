@@ -29,21 +29,21 @@ namespace Back_End_WebAPI.Controllers
         public JsonResult Post(Contract contr)
         {
             ContractManager.PostContract(contr);
-            return new JsonResult("Post запрос успешен!");
+            return new JsonResult("Post запрос выполнен!");
         }
 
         [HttpPut]
         public JsonResult Put(Contract contr)
         {
             ContractManager.PutContract(contr);
-            return new JsonResult("Put метод успешен!");
+            return new JsonResult("Put запрос выполнен!");
         }
 
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
             ContractManager.DeleteContract(id);
-            return new JsonResult("Delete метод успешен!");
+            return new JsonResult("Delete запрос выполнен!");
         }
     }
 }
