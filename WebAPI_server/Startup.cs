@@ -42,6 +42,8 @@ namespace WebAPI_server
 
             services.AddControllers();
 
+            //string connectionString = "Server=.; Initial Catalog=WorkDB; Integrated Security=true";
+            //services.AddTransient<IWorkSql>
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();

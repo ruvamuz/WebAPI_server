@@ -4,8 +4,8 @@ Create Database WorkDB
 #Создание и работа с таблицей Контракт
 create table dbo.Contract(
 Id INT PRIMARY KEY IDENTITY,
-ShortNameContract varchar(100),
-FullNameContract varchar(500)
+ShortNameContract nvarchar(100),
+FullNameContract nvarchar(500)
 )
 
 select * from dbo.Contract
@@ -19,7 +19,7 @@ create table dbo.Employee(
 Id INT PRIMARY KEY IDENTITY,
 Name nvarchar(20),
 Family nvarchar(20),
-Patronymic varchar(20),
+Patronymic nvarchar(20),
 JobPosition int,
 BirthDate date
 )

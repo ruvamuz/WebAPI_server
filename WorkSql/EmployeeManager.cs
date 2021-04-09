@@ -12,7 +12,7 @@ namespace WorkSql
         //Получение Таблицы Сотрудников
         static public DataTable GetEmployee()
         {
-            string GetEmployee = @"SELECT Employee.Id, Employee.Family, Employee.Name, Employee.Patronymic, JobPosition.JobPosition,
+            string GetEmployee = @"SELECT Employee.Id, Employee.Family, Employee.Name, Employee.Patronymic, Employee.JobPosition, JobPosition.JobPosition,
                 convert(varchar(10),Employee.BirthDate,120) as BirthDate FROM Employee
                 LEFT JOIN JobPosition On JobPosition.Id = Employee.JobPosition";
             DataTable table = new DataTable();
