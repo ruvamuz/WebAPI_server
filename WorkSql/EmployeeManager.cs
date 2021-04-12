@@ -37,7 +37,11 @@ namespace WorkSql
         //}
         public List<Employee> Get()
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            string GetEmployee = @"SELECT Employee.Id, Employee.Family, Employee.Name, Employee.Patronymic, JobPosition.JobPosition,
+                convert(varchar(10),Employee.BirthDate,120) as BirthDate FROM Employee
+                LEFT JOIN JobPosition On JobPosition.Id = Employee.JobPosition";
+            DataTable table = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 return db.Query<Employee>("SELECT Employee.Id, " +
                     "Employee.Family, " +
