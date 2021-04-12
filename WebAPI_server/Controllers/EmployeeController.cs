@@ -1,9 +1,7 @@
-﻿using WorkSql.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using WorkSql;
+using System.Collections.Generic;
+using WorkSql.Models;
 
 namespace Back_End_WebAPI.Controllers
 {
@@ -12,37 +10,49 @@ namespace Back_End_WebAPI.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IConfiguration _configuration;
+        private IEmployeeManager _employeeManager;
 
-        public EmployeeController(IConfiguration configuration)
+        public EmployeeController(IConfiguration configuration, IEmployeeManager employeeManager)
         {
             _configuration = configuration;
+            _employeeManager = employeeManager;
         }
 
         [HttpGet]
         public JsonResult Get()
         {
-            DataTable table = EmployeeManager.GetEmployee();
+            List<Employee> table = _employeeManager.Get();
             return new JsonResult(table);
         }
 
-        [HttpPost]
-        public JsonResult Post(Employee emp)
+        [HttpGet("{id}")]
+        public JsonResult Get(int id)
         {
-            EmployeeManager.PostEmployee(emp);
+            Employee employee = _employeeManager.Get(id);
+            return new JsonResult(employee);
+        }
+
+        [HttpPost]
+        public JsonResult Post(Employee employee)
+        {
+            _employeeManager.Create(employee);
+            //EmployeeManager.PostEmployee();
             return new JsonResult("Post запрос выполнен!");
         }
 
         [HttpPut]
-        public JsonResult Put(Employee emp)
+        public JsonResult Put(Employee employee)
         {
-            EmployeeManager.PutEmployee(emp);
+            _employeeManager.Update(employee);
+            //EmployeeManager.PutEmployee(emp);
             return new JsonResult("Put запрос выполнен!");
         }
 
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
-            EmployeeManager.DeleteEmployee(id);
+            _employeeManager.Delete(id);
+            //EmployeeManager.DeleteEmployee(id);
             return new JsonResult("Delete запрос выполнен!");
         }
     }

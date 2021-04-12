@@ -1,9 +1,7 @@
-﻿using WorkSql.Models;
-using WorkSql;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using WorkSql.Models;
 
 namespace Back_End_WebAPI.Controllers
 {
@@ -12,37 +10,49 @@ namespace Back_End_WebAPI.Controllers
     public class ContractController : ControllerBase
     {
         private readonly IConfiguration _configuration;
+        private IContractManager _contractManager;
 
-        public ContractController(IConfiguration configuration)
+        public ContractController(IConfiguration configuration, IContractManager contractManager)
         {
             _configuration = configuration;
+            _contractManager = contractManager;
         }
 
         [HttpGet]
         public JsonResult Get()
         {
-            DataTable table = ContractManager.GetContract();
+            List<Contract> table = _contractManager.Get(); //ContractManager..Get();
             return new JsonResult(table);
         }
-        
+
+        [HttpGet("{id}")]
+        public JsonResult Get(int id)
+        {
+            Contract contract = _contractManager.Get(id);
+            return new JsonResult(contract);
+        }
+
         [HttpPost]
         public JsonResult Post(Contract contr)
         {
-            ContractManager.PostContract(contr);
-            return new JsonResult("Post запрос выполнен!");
+            _contractManager.Create(contr);
+            //ContractManager.PostContract(contr);
+            return new JsonResult("POST запрос выполнен!");
         }
 
         [HttpPut]
         public JsonResult Put(Contract contr)
         {
-            ContractManager.PutContract(contr);
+            _contractManager.Update(contr);
+            //ContractManager.PutContract(contr);
             return new JsonResult("Put запрос выполнен!");
         }
 
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
-            ContractManager.DeleteContract(id);
+            _contractManager.Delete(id);
+            //ContractManager.DeleteContract(id);
             return new JsonResult("Delete запрос выполнен!");
         }
     }
