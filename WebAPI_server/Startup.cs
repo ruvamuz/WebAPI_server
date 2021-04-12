@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WorkSql.Models;
+using WorkSql;
 
 namespace WebAPI_server
 {
@@ -40,10 +42,14 @@ namespace WebAPI_server
                 .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
                 = new DefaultContractResolver());
 
+            string connectionString = "Server=.; Initial Catalog=WorkDB; Integrated Security=true";
+            services.AddTransient<IContractManager, ContractManager>(x => new ContractManager(connectionString));
+            services.AddTransient<IEmployeeManager, EmployeeManager>(x => new EmployeeManager(connectionString));
+            services.AddTransient<IJobPositionTable, JobPositionManager>(x => new JobPositionManager(connectionString));
+
+
             services.AddControllers();
 
-            //string connectionString = "Server=.; Initial Catalog=WorkDB; Integrated Security=true";
-            //services.AddTransient<IWorkSql>
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();

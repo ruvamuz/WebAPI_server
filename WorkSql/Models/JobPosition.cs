@@ -9,4 +9,13 @@ namespace WorkSql.Models
         public int Id { get; set; }
         public string JobPosition { get; set; }
     }
+
+    public interface IJobPositionTable
+    {
+        List<JobPositionTable> Get();
+        //JobPositionTable Get(int id);
+        void Create(JobPositionTable job);
+        void Update(JobPositionTable job);
+        void Delete(int id);
+    }
 }
