@@ -46,7 +46,7 @@ namespace WebAPI_server
             services.AddTransient<IContractManager, ContractManager>(x => new ContractManager(connectionString));
             services.AddTransient<IEmployeeManager, EmployeeManager>(x => new EmployeeManager(connectionString));
             services.AddTransient<IJobPositionTable, JobPositionManager>(x => new JobPositionManager(connectionString));
-
+            services.AddTransient<IWorkPlan, WorkPlanManager>(x => new WorkPlanManager(connectionString));
 
             services.AddControllers();
 

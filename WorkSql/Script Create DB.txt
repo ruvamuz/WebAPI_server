@@ -41,3 +41,23 @@ insert into dbo.JobPosition values
 ('Тестировщик')
 
 select * from dbo.JobPosition
+
+
+
+# Создание таблицы Плана работ
+create table dbo.WorkPlan(
+Id INT PRIMARY KEY IDENTITY,
+DateWork DATE NOT NULL,
+Employee INT NOT NULL,
+Contract INT NOT NULL,
+StartTime TIME(0),
+EndTime TIME(0),
+Note nvarchar(500),
+)
+
+insert into dbo.WorkPlan values
+('12-04-2021','4', '3', '9:00', '13:00', '')
+
+insert into dbo.WorkPlan values
+('12-04-2021','4', '3', '13:00', '18:00', '')
+
