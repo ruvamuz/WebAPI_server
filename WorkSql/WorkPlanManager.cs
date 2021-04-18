@@ -22,11 +22,20 @@ namespace WorkSql
             {
                 return db.Query<WorkPlan>("SELECT " +
                     "WorkPlan.Id, " +
-                    "CAST(WorkPlan.DateWork as nvarchar) as DateWork, " +
+                    "CAST(WorkPlan.Date as nvarchar) as Date, " +
                     "WorkPlan.Employee, " +
-                    "WorkPlan.Contract, " +
-                    "CAST(WorkPlan.StartTime as nvarchar) as StartTime, " +
-                    "CAST(WorkPlan.EndTime as nvarchar) as EndTime, " +
+                    "WorkPlan.time08, " +
+                    "WorkPlan.time09, " +
+                    "WorkPlan.time10, " +
+                    "WorkPlan.time11, " +
+                    "WorkPlan.time12, " +
+                    "WorkPlan.time13, " +
+                    "WorkPlan.time14, " +
+                    "WorkPlan.time15, " +
+                    "WorkPlan.time16, " +
+                    "WorkPlan.time17, " +
+                    "WorkPlan.time18, " +
+                    "WorkPlan.time19, " +
                     "WorkPlan.Note " +
                     "FROM WorkPlan").ToList();
             }
@@ -39,17 +48,54 @@ namespace WorkSql
                 var parameters = new { EmployeeId = Id, StartDate = startDate, EndDate = endDate };
                 var sqlQuery = "SELECT " +
                     "WorkPlan.Id, " +
-                    "CAST(WorkPlan.DateWork as nvarchar) as DateWork, " +
+                    "CAST(WorkPlan.Date as nvarchar) as Date, " +
                     "WorkPlan.Employee, " +
-                    "WorkPlan.Contract, " +
-                    "CAST(WorkPlan.StartTime as nvarchar) as StartTime, " +
-                    "CAST(WorkPlan.EndTime as nvarchar) as EndTime, " +
+                    "WorkPlan.time08, " +
+                    "WorkPlan.time09, " +
+                    "WorkPlan.time10, " +
+                    "WorkPlan.time11, " +
+                    "WorkPlan.time12, " +
+                    "WorkPlan.time13, " +
+                    "WorkPlan.time14, " +
+                    "WorkPlan.time15, " +
+                    "WorkPlan.time16, " +
+                    "WorkPlan.time17, " +
+                    "WorkPlan.time18, " +
+                    "WorkPlan.time19, " +
                     "WorkPlan.Note " +
                     "FROM WorkPlan " +
                     "WHERE " +
-                    "(DateWork BETWEEN @StartDate AND @EndDate) AND (Employee = @EmployeeId)";
+                    "(Date BETWEEN @StartDate AND @EndDate) AND (Employee = @EmployeeId)";
                 return db.Query<WorkPlan>(sqlQuery, parameters).ToList();
+            }
+        }
 
+        public WorkPlan Get(int Id, string Date)
+        {
+            using (SqlConnection db = new SqlConnection(connectionString))
+            {
+                var parameters = new { EmployeeId = Id, Date = Date};
+                var sqlQuery = "SELECT " +
+                    "WorkPlan.Id, " +
+                    "CAST(WorkPlan.Date as nvarchar) as Date, " +
+                    "WorkPlan.Employee, " +
+                    "WorkPlan.time08, " +
+                    "WorkPlan.time09, " +
+                    "WorkPlan.time10, " +
+                    "WorkPlan.time11, " +
+                    "WorkPlan.time12, " +
+                    "WorkPlan.time13, " +
+                    "WorkPlan.time14, " +
+                    "WorkPlan.time15, " +
+                    "WorkPlan.time16, " +
+                    "WorkPlan.time17, " +
+                    "WorkPlan.time18, " +
+                    "WorkPlan.time19, " +
+                    "WorkPlan.Note " +
+                    "FROM WorkPlan " +
+                    "WHERE " +
+                    "(Date = @Date) AND (Employee = @EmployeeId)";
+                return db.Query<WorkPlan>(sqlQuery, parameters).FirstOrDefault();
             }
         }
     }

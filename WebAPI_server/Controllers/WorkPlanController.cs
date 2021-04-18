@@ -25,6 +25,13 @@ namespace Back_End_WebAPI.Controllers
             return new JsonResult(table);
         }
 
+        [HttpGet("{Id}/{Date}")]
+        public WorkPlan Get(int Id, string Date)
+        {
+            //List<WorkPlan> table = _workPlan.Get(Id, Date); //ContractManager..Get();
+            return _workPlan.Get(Id, Date);//new JsonResult(table);
+        }
+
         [HttpGet("{Id}/{startDate}/{endDate}")]
         public JsonResult Get(int Id, string startDate, string endDate)
         {

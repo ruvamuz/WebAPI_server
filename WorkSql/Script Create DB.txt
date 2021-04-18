@@ -56,8 +56,40 @@ Note nvarchar(500),
 )
 
 insert into dbo.WorkPlan values
-('12-04-2021','4', '3', '9:00', '13:00', '')
+('2021-04-12','4', '3', '13:00', '18:00', '')
+
+# Создание таблицы Плана работ2
+create table dbo.WorkPlan(
+Id INT PRIMARY KEY IDENTITY,
+Date DATE NOT NULL,
+Employee INT NOT NULL,
+time08 int,
+time09 int,
+time10 int,
+time11 int,
+time12 int,
+time13 int,
+time14 int,
+time15 int,
+time16 int,
+time17 int,
+time18 int,
+time19 int,
+Note nvarchar(1000),
+)
+
 
 insert into dbo.WorkPlan values
-('12-04-2021','4', '3', '13:00', '18:00', '')
+('2021-04-12', '4', '0', '2', '2', '2', '2', '2', '7', '7', '7', '7', '8', '8', '')
 
+insert into dbo.WorkPlan values
+('2021-04-13', '4', '0', '8', '8', '2', '2', '7', '7', '7', '7', '7', '8', '8', '')
+
+insert into dbo.WorkPlan values
+('2021-04-14', '4', '0', '7', '7', '7', '1', '1', '1', '1', '1', '1', '1', '1', '')
+
+insert into dbo.WorkPlan values
+('2021-04-12', '1007', '0', '1', '1', '1', '1', '1', '1', '1', '1', '2', '2', '2', '')
+
+insert into dbo.WorkPlan values
+('2021-04-13', '1007', '0', '1002', '1002', '1002', '1002', '1002', '1002', '1002', '1002', '1002', '2', '2', '')
