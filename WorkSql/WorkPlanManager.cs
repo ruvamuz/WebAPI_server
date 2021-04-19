@@ -105,14 +105,54 @@ namespace WorkSql
             {
                 foreach(var item in workPlans)
                 {
-                    //var sqlQuery = "UPDATE Employee SET " +
-                    //    "Family=@Family, " +
-                    //    "Name=@Name, " +
-                    //    "Patronymic=@Patronymic, " +
-                    //    "JobPosition=@JobPosition, " +
-                    //    "BirthDate=@BirthDate " +
-                    //    "WHERE Id=@Id";
-                    //db.Execute(sqlQuery, item);
+                    //var sqlQuery = "UPDATE WorkPlan SET " +
+                    //    "Date=@Date, " +
+                    //    "Employee=@Employee, " +
+                    //    "time08=@time08, " +
+                    //    "time09=@time09, " +
+                    //    "time10=@time10, " +
+                    //    "time11=@time11, " +
+                    //    "time12=@time12, " +
+                    //    "time13=@time13, " +
+                    //    "time14=@time14, " +
+                    //    "time15=@time15, " +
+                    //    "time16=@time16, " +
+                    //    "time17=@time17, " +
+                    //    "time18=@time18, " +
+                    //    "time19=@time19, " +
+                    //    "Note=@Note, " +
+                    //    "WHERE NOT EXISTS Id=@Id";
+                    var sqlQuery = 
+                        "IF (EXISTS (SELECT * FROM WorkPlan WHERE Employee = @Employee AND Date = @Date)) " +
+                        "BEGIN " +
+                            "UPDATE WorkPlan " +
+                            "SET " +
+                            "Date = @Date, " +
+                            "Employee = @Employee, " +
+                            "time08 = @time08, " +
+                            "time09 = @time09, " +
+                            "time10 = @time10, " +
+                            "time11 = @time11, " +
+                            "time12 = @time12, " +
+                            "time13 = @time13, " +
+                            "time14 = @time14, " +
+                            "time15 = @time15, " +
+                            "time16 = @time16, " +
+                            "time17 = @time17, " +
+                            "time18 = @time18, " +
+                            "time19 = @time19, " +
+                            "Note = @Note " +
+                            "WHERE Employee = @Employee AND Date = @Date " +
+                        "END " +
+                            "ELSE " +
+                                "BEGIN " +
+                                    "INSERT INTO WorkPlan " +
+                                    "(Date, Employee,   time08,  time09,  time10,  time11,  time12,  time13,  time14,  time15,  time16,  time17,  time18,  time19,  Note) " +
+                                    "VALUES " +
+                                    "(@Date, @Employee, @time08, @time09, @time10, @time11, @time12, @time13, @time14, @time15, @time16, @time17, @time18, @time19, @Note) " +
+                                "END";
+
+                    db.Execute(sqlQuery, item);
                 }
                 
             }
