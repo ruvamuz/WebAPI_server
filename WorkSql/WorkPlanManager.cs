@@ -98,5 +98,24 @@ namespace WorkSql
                 return db.Query<WorkPlan>(sqlQuery, parameters).FirstOrDefault();
             }
         }
+
+        public void Update(List<WorkPlan> workPlans)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                foreach(var item in workPlans)
+                {
+                    //var sqlQuery = "UPDATE Employee SET " +
+                    //    "Family=@Family, " +
+                    //    "Name=@Name, " +
+                    //    "Patronymic=@Patronymic, " +
+                    //    "JobPosition=@JobPosition, " +
+                    //    "BirthDate=@BirthDate " +
+                    //    "WHERE Id=@Id";
+                    //db.Execute(sqlQuery, item);
+                }
+                
+            }
+        }
     }
 }

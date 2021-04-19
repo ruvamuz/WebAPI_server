@@ -52,17 +52,17 @@ namespace Back_End_WebAPI.Controllers
             _workPlan.Create(contr);
             //ContractManager.PostContract(contr);
             return new JsonResult("POST запрос выполнен!");
-        }
+        }*/
 
         [HttpPut]
-        public JsonResult Put(Contract contr)
+        public JsonResult Put(List<WorkPlan> workPlans)
         {
-            _workPlan.Update(contr);
+            _workPlan.Update(workPlans);
             //ContractManager.PutContract(contr);
             return new JsonResult("Put запрос выполнен!");
         }
 
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
             _workPlan.Delete(id);
